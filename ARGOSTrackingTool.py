@@ -8,6 +8,9 @@
 # Author: Rabiya Dar (rabiya.dar@duke.edu)
 # Date:   Fall 2021
 #--------------------------------------------------------------
+# Ask the user for a date, specifying the format
+user_date = input("Enter a date (M/D/YYYY): ") #input("Enter a date (M/D/YYYY)")
+
 #Create a variable pointing to the data file
 file_name = './data/raw/Sara.txt'
 
@@ -44,3 +47,17 @@ for lineString in line_list:
         print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
         date_dict[record_id]=obs_date
         coord_dict[record_id]=(obs_lat, obs_lon)
+
+#Create an empty key list
+matching_keys = []
+
+# Loop through all key, value pairs in the date_dictionary
+for the_key, the_value in date_dict.items():
+    #See if the date (the value) matches the user date
+    if the_value == user_date:
+        matching_keys.append(the_key)
+        
+#Reveal locations for each key in matching_keys
+for matching_key in matching_keys:
+    obs_lat, obs_lon = coord_dict[matching_key]
+    print(f"Record {matching_key} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {user_date}")
